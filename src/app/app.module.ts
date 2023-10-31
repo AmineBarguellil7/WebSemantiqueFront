@@ -18,8 +18,7 @@ import { EditStoreComponent } from './Store/edit-store/edit-store.component';
 import { AddOrderComponent } from './order_folder/addorder/addorder.component';
 import { OrderListComponent } from './order_folder/order-list/order-list.component';
 import { ModifyOrderComponent } from './order_folder/modifyorder/modifyorder.component';
-
-
+import {ListeProductComponent} from './product/afficherList/liste-product.component';
 
 
 
@@ -42,7 +41,7 @@ import { ModifyOrderComponent } from './order_folder/modifyorder/modifyorder.com
     AddOrderComponent,
     OrderListComponent,
     ModifyOrderComponent,
-    
+    ListeProductComponent
   ],
   imports: [
     BrowserModule,

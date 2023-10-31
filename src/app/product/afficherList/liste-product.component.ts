@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/Product';
-import { DataService } from 'src/app/service/data.service';
-import Swal from 'sweetalert2';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-liste-product',
@@ -9,98 +8,89 @@ import Swal from 'sweetalert2';
   styleUrls: ['./liste-product.component.css'],
 })
 export class ListeProductComponent implements OnInit {
+  constructor(private http: HttpClient, private router: Router) {}
+
   name: string = '';
-  Id: string = '';
-  product: Product = new Product();
+  price: number | null = null;
+  category: string = '';
+  products: any = [];
+  filteredProducts: any = [];
+  categories: any[] = [];
 
-  productToModify = {
-    name: '',
-    description: '',
-    price: 0,
-    quantity: 0,
-    weight: 0,
-    image_url: '',
-    store_id: 0,
-  };
+  filterType: string = '';
 
-  listProducts: any;
-  router: any;
+  filterProductsByPrice() {
+    const backendUrl = 'http://localhost:9093/product/filterProductsByPrice';
+    const params = new HttpParams().set(
+      'price',
+      this.price !== null ? this.price.toString() : ''
+    );
 
-  constructor(private productService: DataService) {}
+    this.filterType = 'products';
 
-  ngOnInit(): void {
-    this.loadData();
-  }
-
-  loadData() {
-    this.productService.getProducts().subscribe((res) => {
-      this.listProducts = res;
-      console.log(this.listProducts);
+    this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
+      this.filteredProducts = responseData;
+      this.router.navigate(['/afficher-liste/search'], {
+        queryParams: {
+          searchData: JSON.stringify(this.filteredProducts),
+          filterType: this.filterType,
+        },
+      });
     });
   }
 
-  onUpdateProduct(product) {
-    this.productToModify = product;
-  }
+  filterByName() {
+    if (this.name === '') {
+      return false;
+    }
+    const backendUrl = 'http://localhost:9093/product/productsByName';
+    const params = new HttpParams().set('nameparam', this.name);
+    this.filterType = 'nameparam';
 
-  ModifierProduct() {
-    Swal.fire({
-      title: 'Souhaitez-vous enregistrer les modifications ?',
-      showDenyButton: true,
-      confirmButtonText: 'enregistrer',
-      denyButtonText: 'annuler',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire('Modification avec succès!', '', 'success');
-        this.productService.updateProduct(this.product).subscribe(
-          (res) => {
-            console.log(res);
-            this.loadData(); // Reload the data after update
-          },
-          (err) => console.log(err)
-        );
-      } else if (result.isDenied) {
-        this.loadData(); // Reload the data if changes are not saved
-        Swal.fire('Les modifications ne sont pas enregistrées', '', 'info');
-      }
+    this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
+      this.filteredProducts = responseData;
+      this.products = responseData;
     });
+
+    return false;
   }
 
-  deleteProduct(product: any) {
-    Swal.fire({
-      title: 'Vous Etes sur?',
-      text: 'Vous ne pouvez pas revenir en arrière!',
-      icon: 'warning',
-      showCancelButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire('Supprimé!', 'Produit supprimé', 'success');
-        this.productService.deleteProduct(product.idProduct).subscribe(
-          (res) => {
-            console.log(res);
-            this.loadData(); // Reload the data after deletion
-          },
-          (err) => console.log(err)
-        );
-      } else if (result.isDismissed) {
-        Swal.fire('Annulé', 'Produit non supprimé', 'error');
-      }
+  searchByCategory() {
+    if (this.category === '') {
+      return false;
+    }
+
+    const backendUrl = 'http://localhost:9093/product/filterByCategory'; // Adjust the URL to your API endpoint
+    const params = new HttpParams().set('category', this.category);
+    this.filterType = 'category';
+
+    this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
+      this.filteredProducts = responseData;
+      this.router.navigate(['/afficher-liste/search'], {
+        queryParams: {
+          searchData: JSON.stringify(this.filteredProducts),
+          filterType: this.filterType,
+        },
+      });
     });
+
+    return false;
   }
 
-  ShowDetails(id: number, name: string, description: string) {
-    this.router.navigate(['/listeProducts/' + id, name, description]);
+  loadCategories() {
+    this.http
+      .get('http://localhost:9093/category/getProductCategories')
+      .subscribe((data: any) => {
+        this.categories = data;
+      });
   }
 
-  SearchProductById(id: string) {
-    return !this.Id || id == this.Id;
-  }
-
-  TestStatus(productName: string) {
-    return !this.name || !productName.startsWith(this.name);
-  }
-
-  AfficherList() {
-    this.loadData(); // Reload the data
+  ngOnInit() {
+    this.http
+      .get('http://localhost:9093/product/getProducts')
+      .subscribe((responseData) => {
+        this.products = responseData;
+      });
+    this.loadCategories();
   }
 }
