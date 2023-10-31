@@ -18,9 +18,6 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a routerLink="/home" class="nav-link">contact</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a routerLink="/events" class="nav-link">Events</a>
-      </li>
     </ul>
 
     <!-- Right navbar links -->
@@ -79,27 +76,26 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-         
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Evenement
+                Etudiant
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right"></span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a routerLink="events/new" class="nav-link">
+                <a routerLink="etudiants/addetudiant" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter un evenement</p>
+                  <p>Ajouter Etudiant</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="events" class="nav-link">
+                <a routerLink="etudiants" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Liste d'evenements</p>
+                  <p>Afficher Liste d'Etudiants</p>
                 </a>
               </li>
     
@@ -115,15 +111,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a routerLink="addequipe" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter Store</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a routerLink="equipes" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Afficher Liste Stores</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="addequipe" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Promotions</p>
                 </a>
               </li>
               
@@ -146,7 +142,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/afficher-liste" class="nav-link">
+                <a routerLink="/listeArticles" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Afficher Liste Articles</p>
                 </a>
@@ -155,71 +151,62 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tree"></i>
-              <p>
-                Product
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="/products" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Liste Products</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-         
-          <li class="nav-item">
-            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Avis
+                Contrat
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a  routerLink="/addavis" class="nav-link">
+                <a  routerLink="ajoutercontrat" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter Avis</p>
+                  <p>Ajouter Contrat</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/showavis" class="nav-link">
+                <a routerLink="contrat" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Afficher Table Avis</p>
+                  <p>Afficher Table Contrats</p>
                 </a>
               </li>
-             
+              <li class="nav-item">
+                <a routerLink="listec" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Afficher Liste Contrats</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                order
+                Université
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a routerLink="/AddOrder" class="nav-link">
+                <a routerLink="/adduniversite" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter commande</p>
+                  <p>Ajouter Université</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a routerLink="/orderlist" class="nav-link">
+                <a routerLink="/universites" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>list orders</p>
+                  <p>Afficher Table Universités</p>
                 </a>
               </li>
-              
-            
+              <li class="nav-item">
+                <a routerLink="/listeuniversite" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Afficher Liste universites</p>
+                </a>
+              </li>
             </ul>
-          </li> 
+          </li>        
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
