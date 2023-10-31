@@ -6,61 +6,145 @@
     <title>Your Page Title</title>
     <!-- Add the path to your custom CSS file here -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <style>
+      /* Basic styling for your page */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .container {
+        margin-top: 20px;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      select,
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      table th,
+      table td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      table th {
+        background-color: #333;
+        color: #fff;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      table td {
+        border-top: 1px solid #ddd;
+      }
+
+      table tr:hover {
+        background-color: #e0e0e0;
+      }
+
+      /* Style for buttons */
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <h1>Product List</h1>
-    <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-info" (click)="filterByName()">
-        Search By Name
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Rechercher Par nom"
+            aria-label="Search"
+            [(ngModel)]="name"
+            name="SearchInputName"
+          />
+          <button class="btn btn-info" (click)="filterByName()">
+            Search By Name
+          </button>
+        </div>
+      </form>
+      <div class="form-group">
+        <label for="priceFilter">Filter by Price:</label>
+        <input
+          type="number"
+          id="priceFilter"
+          [(ngModel)]="minPrice"
+          name="SearchInputPrice"
+        />
+      </div>
+      <button class="btn btn-info" (click)="filterByPrice()">
+        Search By Price
       </button>
-      <br />
-      <br />
-      <input
-        class="form-control mr-sm-2"
-        type="text"
-        placeholder="Rechercher Par nom"
-        aria-label="Search"
-        [(ngModel)]="name"
-        name="SearchInputName"
-      />
-    </form>
-    <br />
-    <div>
-      <label for="priceFilter">Filter by Price:</label>
-      <input
-        type="number"
-        id="priceFilter"
-        [(ngModel)]="minPrice"
-        name="SearchInputPrice"
-      />
-    </div>
-    <button class="btn btn-info" (click)="filterByPrice()">
-      Search By Price
-    </button>
-    <br />
-    <br />
+      <br/>
+      <br/>
 
-    <div>
-      <label for="categoryDropdown">Filter by Category:</label>
-      <select [(ngModel)]="category" (change)="searchByCategory()">
-        <option value="">Select Category</option>
-        <option *ngFor="let cat of categories" [value]="cat.nameCategorie">
-          {{ cat.nameCategorie }}
-        </option>
-      </select>
+      <div class="form-group">
+        <label for="categoryDropdown">Filter by Category:</label>
+        <select [(ngModel)]="category" (change)="searchByCategory()">
+          <option value="">Select Category</option>
+          <option *ngFor="let cat of categories" [value]="cat.nameCategorie">
+            {{ cat.nameCategorie }}
+          </option>
+        </select>
+      </div>
+     
     </div>
-    <button class="btn btn-success" (click)="reloadProducts()">
+    <button class="btn btn-successs" (click)="reloadProducts()" style="float: left;">
       Reload Categories
     </button>
     <table>
       <tr>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Description</td>
-        <td>Price</td>
-        <td>Quantity</td>
-        <td>Weight</td>
-        <!-- <td>Category</td> Add a new table header for Category -->
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Weight</th>
       </tr>
       <tr *ngFor="let product of products">
         <td>{{ product.idProduct[0] }}</td>
@@ -69,7 +153,6 @@
         <td>{{ product.price }}</td>
         <td>{{ product.quantity }}</td>
         <td>{{ product.weight }}</td>
-        <!-- <td>{{ product.category.name }}</td> Access the category name -->
       </tr>
     </table>
   </body>
