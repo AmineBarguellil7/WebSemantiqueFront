@@ -1,0 +1,15 @@
+<div class="container">
+    <h4>Les articles filtrés suivant {{filterType}} sont :</h4>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let event of SearchData">
+            <div class="list-group-item clearfix mb-3">
+                <h4>Le nom de l'évènement: {{event.name_event}}</h4>
+                <p>Le contenu de l'évènement: {{event.location}}</p>
+                <p>La date de dèbut de l'évènement: {{event.start_date}}</p>
+                <p>La date de fin de l'évènement: {{event.end_date}}</p>
+                <p>Le prix d'entrée: {{event.entry_price}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
