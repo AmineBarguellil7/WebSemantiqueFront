@@ -18,16 +18,8 @@ import { EditStoreComponent } from './Store/edit-store/edit-store.component';
 import { AddOrderComponent } from './order_folder/addorder/addorder.component';
 import { OrderListComponent } from './order_folder/order-list/order-list.component';
 import { ModifyOrderComponent } from './order_folder/modifyorder/modifyorder.component';
-import {ListeProductComponent} from './product/afficherList/liste-product.component';
-
-
-
-
-
-
-
-
-
+import { ListeProductComponent } from './product/afficherList/liste-product.component';
+import { ListCategoriesComponent } from './product/categorieList/liste-categories.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +33,8 @@ import {ListeProductComponent} from './product/afficherList/liste-product.compon
     AddOrderComponent,
     OrderListComponent,
     ModifyOrderComponent,
-    ListeProductComponent
+    ListeProductComponent,
+    ListCategoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,9 +47,9 @@ import {ListeProductComponent} from './product/afficherList/liste-product.compon
     Ng2SearchPipeModule,
     Ng2OrderModule,
     NgxPaginationModule,
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

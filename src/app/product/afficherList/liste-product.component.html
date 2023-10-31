@@ -10,33 +10,51 @@
   <body>
     <h1>Product List</h1>
     <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-info" (click)="filterByName()">Search By Name</button>
-      <input class="form-control mr-sm-2" type="text" placeholder="Rechercher Par nom" aria-label="Search" [(ngModel)]="name" name="SearchInputName">
+      <button class="btn btn-info" (click)="filterByName()">
+        Search By Name
+      </button>
+      <br />
+      <br />
+      <input
+        class="form-control mr-sm-2"
+        type="text"
+        placeholder="Rechercher Par nom"
+        aria-label="Search"
+        [(ngModel)]="name"
+        name="SearchInputName"
+      />
     </form>
-    
-    
+    <br />
     <div>
       <label for="priceFilter">Filter by Price:</label>
       <input
         type="number"
         id="priceFilter"
-        [(ngModel)]="price"
-        (ngModelChange)="filterProductsByPrice()"
+        [(ngModel)]="minPrice"
+        name="SearchInputPrice"
       />
     </div>
+    <br />
+    <button class="btn btn-info" (click)="filterByPrice()">
+      Search By Price
+    </button>
+    <br />
+    <br />
 
     <div>
       <label for="categoryDropdown">Filter by Category:</label>
-      <select
-        id="categoryDropdown"
-        [(ngModel)]="category"
-        (change)="searchByCategory()"
-      >
+      <select [(ngModel)]="category" (change)="searchByCategory()">
         <option value="">Select Category</option>
-        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        <option *ngFor="let cat of categories" [value]="cat.nameCategorie">
+          {{ cat.nameCategorie }}
+        </option>
       </select>
     </div>
-
+    <br />
+    <br />
+    <button class="btn btn-success" (click)="reloadProducts()">
+      Reload Categories
+    </button>
     <table>
       <tr>
         <td>ID</td>
@@ -48,7 +66,7 @@
         <!-- <td>Category</td> Add a new table header for Category -->
       </tr>
       <tr *ngFor="let product of products">
-        <td>{{ product.idProduct }}</td>
+        <td>{{ product.idProduct[0] }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.description }}</td>
         <td>{{ product.price }}</td>

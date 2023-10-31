@@ -11,32 +11,27 @@ export class ListeProductComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   name: string = '';
-  price: number | null = null;
+  minPrice: number | null = null;
   category: string = '';
   products: any = [];
   filteredProducts: any = [];
   categories: any[] = [];
 
   filterType: string = '';
-
-  filterProductsByPrice() {
-    const backendUrl = 'http://localhost:9093/product/filterProductsByPrice';
-    const params = new HttpParams().set(
-      'price',
-      this.price !== null ? this.price.toString() : ''
-    );
-
-    this.filterType = 'products';
+  filterByPrice() {
+    if (this.minPrice === null || isNaN(this.minPrice)) {
+      return false;
+    }
+    const backendUrl = 'http://localhost:9093/product/productsByPrice';
+    const params = new HttpParams().set('minPrice', this.minPrice.toString());
+    this.filterType = 'minPrice';
 
     this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
       this.filteredProducts = responseData;
-      this.router.navigate(['/afficher-liste/search'], {
-        queryParams: {
-          searchData: JSON.stringify(this.filteredProducts),
-          filterType: this.filterType,
-        },
-      });
+      this.products = responseData;
     });
+
+    return false;
   }
 
   filterByName() {
@@ -56,30 +51,32 @@ export class ListeProductComponent implements OnInit {
   }
 
   searchByCategory() {
-    if (this.category === '') {
+    const selectedCategory = this.category; //
+    if (!selectedCategory) {
       return false;
     }
+    const backendUrl = 'http://localhost:9093/product/productsByCategory';
 
-    const backendUrl = 'http://localhost:9093/product/filterByCategory'; // Adjust the URL to your API endpoint
-    const params = new HttpParams().set('category', this.category);
-    this.filterType = 'category';
+    const params = new HttpParams().set('category', selectedCategory);
 
     this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
       this.filteredProducts = responseData;
-      this.router.navigate(['/afficher-liste/search'], {
-        queryParams: {
-          searchData: JSON.stringify(this.filteredProducts),
-          filterType: this.filterType,
-        },
-      });
+      this.products = responseData;
     });
 
     return false;
   }
-
+  
+  reloadProducts() {
+    this.http
+    .get('http://localhost:9093/product/getProducts')
+    .subscribe((responseData) => {
+      this.products = responseData;
+    });
+  }
   loadCategories() {
     this.http
-      .get('http://localhost:9093/category/getProductCategories')
+      .get('http://localhost:9093/productca/getProductCategories')
       .subscribe((data: any) => {
         this.categories = data;
       });

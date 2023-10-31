@@ -6,6 +6,7 @@ import { OrderListComponent } from './order_folder/order-list/order-list.compone
 import { AddOrderComponent } from './order_folder/addorder/addorder.component';
 import { ListeProductComponent } from './product/afficherList/liste-product.component';
 import { ModifyOrderComponent } from './order_folder/modifyorder/modifyorder.component';
+import { ListCategoriesComponent } from './product/categorieList/liste-categories.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
       import('./article/article.module').then((m) => m.ArticleModule),
   },
   { path: 'products', component: ListeProductComponent },
+  { path: 'categories', component: ListCategoriesComponent },
 
   {
     path: '',
@@ -42,17 +44,22 @@ const routes: Routes = [
     path: 'etudiants',
     loadChildren: () =>
       import('./etudiant/etudiant.module').then((m) => m.EtudiantModule),
-  
-},
-{ path: 'events', loadChildren: () => import('./events/events.module').then(m => m.EventsModule) },
+  },
+  {
+    path: 'events',
+    loadChildren: () =>
+      import('./events/events.module').then((m) => m.EventsModule),
+  },
 
-{path : 'AddOrder' , component : AddOrderComponent },
-{ path: 'orderlist', component: OrderListComponent },
-{ path: 'modifyorder/:id', component: ModifyOrderComponent },
+  { path: 'AddOrder', component: AddOrderComponent },
+  { path: 'orderlist', component: OrderListComponent },
+  { path: 'modifyorder/:id', component: ModifyOrderComponent },
 
-{path:"",loadChildren: () => import('./avis/avis.module').then(m => m.AvisModule)},
+  {
+    path: '',
+    loadChildren: () => import('./avis/avis.module').then((m) => m.AvisModule),
+  },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
