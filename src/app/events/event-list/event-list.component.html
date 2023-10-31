@@ -1,0 +1,23 @@
+<div class="container mt-5">
+    <h2>Liste des événements</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom de l'événement</th>
+          <th>Date de début</th>
+          <th>Date de fin</th>
+          <th>Lieu</th>
+          <th>Prix d'entrée</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events">
+          <td>{{ event.name }}</td>
+          <td>{{ event.start_date | date }}</td>
+          <td>{{ event.end_date | date }}</td>
+          <td>{{ event.location }}</td>
+          <td>{{ event.entry_price}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

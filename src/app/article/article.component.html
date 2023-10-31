@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center align-items-center container">
+    <div class="row">
+            <form (ngSubmit)="addArticle()"  #f="ngForm">
+                <div class="form-group" ngModelGroup="articleData" #articleData="ngModelGroup">
+                <label for="titre">titre:</label>
+                <input type="text" class="form-control" name="titreArticle" [(ngModel)]="article.titreArticle" required  minlength="3" pattern="[a-zA-Z]*" #titreA="ngModel" placeholder="entrer un titre d'article" >
+                <span class="help-block" *ngIf="!titreA.valid && titreA.touched" [ngStyle]="{color:'red'}">entrer un titre d'article valide!</span>
+                <br>
+                <label for="contenu">contenu:</label>
+                <input type="text" class="form-control" name="contenu" [(ngModel)]="article.contenu" required pattern="[a-zA-Z]*"   #contenu="ngModel">
+                <span class="help-block" *ngIf="!contenu.valid && contenu.touched" [ngStyle]="{color:'red'}">entrer un contenu valide!</span>
+                <br>
+                <label for="auteur">auteur:</label>
+                <input type="text" class="form-control" name="auteur" [(ngModel)]="article.auteur" required pattern="[a-zA-Z]*"   #auteur="ngModel">
+                <span class="help-block" *ngIf="!auteur.valid && auteur.touched" [ngStyle]="{color:'red'}">entrer un auteur valide!</span>
+                </div>
+                <a href="#"><p *ngIf="!articleData.valid && articleData.touched"  [ngClass]="{DataError:!articleData.valid && articleData.touched}">les donnees de l'article sont invalides</p></a>
+                <button  [disabled]="!f.valid" type="submit" class="btn btn-primary" id="B1">Ajouter</button>
+                <button (click)="afficherListeArc()" class="btn btn-success">Afficher Liste Articles</button>
+            </form>
+        </div>
+ </div>

@@ -1,0 +1,68 @@
+<div class="container-fluid py-3">
+  <div class="row justify-content-center my-5">
+    <div class="col-5">
+
+<form [formGroup]="contratForm"  (ngSubmit)="submit()" >
+  
+  <div class="form-group" [ngStyle]="{'margin-top':'1rem'}">
+    <label for="dateDebutContrat">Date début contrat : </label>
+    <input type="date" formControlName="dateDebutContrat" name="dateDebutContrat" class="form-control" placeholder="Enter date de creation" [ngClass]="{'is-invalid' : myControls['dateDebutContrat'].errors}">
+
+    <div *ngIf="myControls['dateDebutContrat'].errors" class="invalid-feedback" class="alert alert-danger" role="alert">
+        <div *ngIf="myControls['dateDebutContrat'].errors?.['required']">
+          Date de début est obligatoire !
+        </div>        
+    </div>   
+</div>
+          
+
+  <div class="form-group" [ngStyle]="{'margin-top':'1rem'}">
+    <label for="dateFinContrat">Date fin contrat: </label>
+    <input type="date" formControlName="dateFinContrat" name="dateFinContrat" class="form-control" placeholder="Enter date de creation" [ngClass]="{'is-invalid' : myControls['dateFinContrat'].errors}">
+
+    <div *ngIf="myControls['dateFinContrat'].errors" class="invalid-feedback" class="alert alert-danger" role="alert">
+        <div *ngIf="myControls['dateFinContrat'].errors?.['required']">
+          Date de fin est obligatoire !
+        </div>        
+    </div>   
+</div>
+
+<div class="form-group">
+  <div class="form-check form-check-inline" [ngStyle]="{'margin-top':'1rem'}">
+
+        <h6  class ="form-check-label  " for="archive" > Archive: </h6>
+
+        
+          <input   class=" form-check-input   " [ngStyle]="{'margin-right':'rem'}" type="radio"   formControlName="archive" name="archive" value="False"     > False  <br> <input type="radio" name="archive" formControlName="archive" value="True"   class="form-check-input " >True
+        
+        </div>
+
+</div>
+
+<div *ngIf= "myControls['archive'].errors"   class="invalid-feedback" class="alert alert-danger" role="alert">
+          <div *ngIf="myControls['archive'].errors['required']" >
+           Choisir une option   !
+          </div>
+          </div>
+        
+
+<div class="form-group">
+  <label for="specialite"> Specialite : </label>
+         <select formControlName="specialite">
+   
+    <option  disabled>Choisir une specialite</option>
+    <option *ngFor="let i of listespecialite ">{{i}}</option>
+  </select>
+        
+        
+
+</div>
+
+              <button type="submit" class = "btn btn-success">SUBMIT</button>
+            
+        </form>
+</div>
+</div>
+</div>
+
+

@@ -1,0 +1,74 @@
+<h1>Ajouter un nouveau magasin</h1>
+<div class="d-flex justify-content-center align-items-center container mt-5">
+  <form [formGroup]="form" (ngSubmit)="addStore()">
+    <div class="form-group">
+      <label>Nom du magasin:
+        <input type="text" formControlName="name" name="name" class="form-control" placeholder="Entrez le nom du magasin" [ngClass]="{'is-invalid': submitted && myControls['name'].errors}">
+      </label>
+      <div *ngIf="submitted && myControls['name'].errors" class="invalid-feedback alert alert-danger" role="alert">
+        <div *ngIf="myControls['name'].errors['required']">
+          Le nom du magasin est obligatoire !
+        </div>
+        <div *ngIf="myControls['name'].hasError('pattern')">
+          Le nom du magasin ne doit contenir que des lettres !
+        </div>
+        <div *ngIf="myControls['name'].errors?.['minlength']">
+          Le nom du magasin doit comporter au moins 3 caractères !
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Description:
+        <input type="text" formControlName="description" name="description" class="form-control" placeholder="Entrez la description du magasin" [ngClass]="{'is-invalid': submitted && myControls['description'].errors}">
+      </label>
+      <div *ngIf="submitted && myControls['description'].errors" class="invalid-feedback alert alert-danger" role="alert">
+        <div *ngIf="myControls['description'].errors['required']">
+          La description du magasin est obligatoire !
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Emplacement:
+        <input type="text" formControlName="location" name="location" class="form-control" placeholder="Entrez l'emplacement" [ngClass]="{'is-invalid': submitted && myControls['location'].errors}">
+      </label>
+      <div *ngIf="submitted && myControls['location'].errors" class="invalid-feedback alert alert-danger" role="alert">
+        <div *ngIf="myControls['location'].errors['required']">
+          L'emplacement est obligatoire !
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Numéro de téléphone:
+        <input type="number" min="1" formControlName="phoneNumber" name="phoneNumber" class="form-control" placeholder="Entrez le numéro de téléphone" [ngClass]="{'is-invalid': submitted && myControls['phoneNumber'].errors}">
+      </label>
+      <div *ngIf="submitted && myControls['phoneNumber'].errors" class="invalid-feedback alert alert-danger" role="alert">
+        <div *ngIf="myControls['phoneNumber'].errors['required']">
+          Le numéro de téléphone est obligatoire !
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="productCategory">Catégorie de produit:
+        <select formControlName="productCategory" name="productCategory" class="form-control" placeholder="Sélectionnez la catégorie de produit" [ngClass]="{'is-invalid': submitted && myControls['productCategory'].errors}">
+          <option value="ELECTRONICS">Électronique</option>
+          <option value="CLOTHING">Vêtements</option>
+          <option value="FOOD">Alimentation</option>
+          <option value="BOOKS">Livres</option>
+          <!-- Add more options as needed -->
+        </select>
+      </label>
+      <div *ngIf="submitted && myControls['productCategory'].errors" class="invalid-feedback alert alert-danger" role="alert">
+        <div *ngIf="myControls['productCategory'].errors['required']">
+          La catégorie de produit est obligatoire !
+        </div>
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn-primary btn-sm">Envoyer</button>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+
+<div class="list-group"  [ngStyle]="{'margin-top':'1rem'}">
+    <a class="list-group-item list-group-item-action  active">
+      
+      <h6>L'Id du contrat: {{contrat.idContrat}}</h6>
+        <h6 >La date de début du contrat : {{contrat.dateDebutContrat}}</h6>
+        <h6>La date de fin du contrat  : {{contrat.dateFinContrat}}</h6>
+      <h6>L'archive : {{contrat.archive}}</h6>
+      <h6>La specialite : {{contrat.specialite}}</h6>
+      
+    </a>
+    <button class="btn btn-primary" (click)= "OnecontratDeleted(contrat)" >Delete</button>
+  </div>

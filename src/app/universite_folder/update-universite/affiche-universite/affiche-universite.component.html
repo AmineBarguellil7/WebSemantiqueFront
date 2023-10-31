@@ -1,0 +1,14 @@
+<div class=" container mt-5">
+
+    <div class="row">
+        <div class="col-md-5">
+            <a  class="list-group-item list-group-item-action active" type="button">
+          
+                <h2>Liste du universite</h2> 
+              </a>
+            <app-universite-item *ngFor= "let i of universites"  [universite]="i"  (universiteDeleted)= "OneuniversiteDeleted()" ></app-universite-item>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        
+    </div>
+</div>
+

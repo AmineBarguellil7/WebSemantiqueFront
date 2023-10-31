@@ -1,0 +1,36 @@
+<p>update-etudiant works!</p>
+<div class="container">
+    <div class="card mt-5" style="align-items: center;" >
+    <h1>  Modifier  Etudiant </h1>
+    </div>
+    <form style="padding-left: 250;"#f="ngForm">
+        <div class="form-group col-md-6">
+          <label class="form-label">Nom</label>
+          <input [(ngModel)]="etudiant.nomE" type="text" name="nomE" class="form-control">
+    
+        </div>
+        
+        <div class="form-group col-md-6">
+        <label class="form-label">Prenom</label>
+        <input [(ngModel)]="etudiant.prenomE" type="text" name="prenomE" class="form-control" >
+      
+      </div>
+      <div class="form-group col-md-6">
+        <label class="form-label">Option</label>
+        <select [(ngModel)]="etudiant.options" name="option" class="form-control" >
+          <option value="GAMIX">GAMIX</option>
+          <option value="SE">SE</option>
+          <option value="SIM">SIM</option>
+          <option value="NIDS">NIDS</option>
+        </select>
+        
+      </div>
+        
+        <button class="btn btn-success" (click)="updateEtudiant()">
+          Edit 
+        </button>
+        &nbsp;
+        
+      </form>
+</div>
+

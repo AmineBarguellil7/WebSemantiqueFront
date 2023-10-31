@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<br>
+<form class="form-inline my-2 my-lg-0">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+  </svg>
+  <input class="form-control mr-sm-2" type="search" placeholder="Rechercher Par id" aria-label="Search" [(ngModel)]="Id" name="SearchInput">
+</form>
+<br>
+<form class="form-inline my-2 my-lg-0">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+  </svg>
+  <input class="form-control mr-sm-2" type="text" placeholder="Rechercher Par titre" aria-label="Search" [(ngModel)]="titre" name="SearchInputTitre">
+</form>
+
+
+<div class="d-flex justify-content-center align-items-center container">
+<div class="row">
+<div>
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <td>idArticle</td>
+            <td>titre</td>
+            <td>contenu</td>
+            <td>auteur</td>
+            <td>Modifier</td>
+            <td>Supprimer</td>
+            <td>Afficher Detail article</td>
+        </tr>
+    </thead>
+    <tbody *ngFor="let article of listArticles">   
+    <tr  [hidden]="TestStatus(article.titreArticle)" *ngIf="SearchArticleById(article.id)">
+        <td>{{article.id}}</td>
+        <td>{{article.titreArticle}}</td>
+        <td>{{article.contenu}}</td>
+        <td>{{article.auteur}}</td>
+        <td><button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" (click)="onUpdateArticle(article)">
+            Modifier
+        </button></td>
+        <td><button class="btn btn-danger" (click)="deleteArticle(article)">Supprimer</button></td>
+        <td><button class="btn btn-info" (click)="ShowDetails(article.id,article.titreArticle,article.contenu,article.auteur)">Afficher Details article</button></td>
+    </tr>
+    </tbody>
+</table>
+<router-outlet></router-outlet>
+</div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modifier article</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  #updateForm="ngForm" (ngSubmit)="ModifierArticle()">
+                <div class="form-group">
+                <label for="title">titre: </label>
+                <input type="text" class="form-control" #titreArticle="ngModel" name="title" [(ngModel)]="articleAmodifier.titreArticle" required  minlength="3" pattern="[a-zA-Z]*"  placeholder="entrer un titre d'article" >
+                <span class="help-block" *ngIf="!titreArticle.valid && titreArticle.touched" style="color:red;">entrer un titre d'article valide!</span>
+                <br>
+                <label for="contenu">contenu:</label>
+                <input type="text" class="form-control" name="contenu" [(ngModel)]="articleAmodifier.contenu" required pattern="[a-zA-Z]*" placeholder="entrer un contenu" #contenu="ngModel">
+                <span class="help-block" *ngIf="!contenu.valid && contenu.touched" style="color:red;">entrer un contenu valide!</span>
+                <br>
+                <label for="auteur">auteur:</label>
+                <input type="text" class="form-control" name="auteur" [(ngModel)]="articleAmodifier.auteur" required pattern="[a-zA-Z]*"  placeholder="entrer un auteur" #auteur="ngModel">
+                <span class="help-block" *ngIf="!auteur.valid && auteur.touched" style="color:red;">entrer un auteur valide!</span>
+                <button [disabled]="!updateForm.valid" type="submit" class="btn btn-dark" id="B3">mettre à jour</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+

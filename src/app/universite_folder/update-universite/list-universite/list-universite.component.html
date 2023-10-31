@@ -1,0 +1,43 @@
+
+<form action="">
+    <div class="form-group">
+        <label for="">Recherche</label>
+        <input type="String" name="nom" class="form-control" [(ngModel)]="nom">
+    
+
+    </div>
+</form>
+        <table  class="table table-striped table-bordered table-md mt-1" cellspacing="0" >
+    <thead class="table table-hover">
+        <tr>
+            <th class="th-sm" scope="col">#ID</th>
+            <th class="th-sm" scope="col">Nom Universite </th>
+            <th class="th-sm" scope="col" >Nombre de Departement</th>
+            <th class="th-sm" scope="col" >Email</th>
+            <th class="th-sm" scope="col" >Numero</th>
+            <th class="th-sm">Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let eq of universite ">
+        <tr *ngIf="eq.nomUniv==nom || nom==null">
+            <th scope="row" >{{eq.idUniv}}</th>
+            <td>{{eq.nomUniv}}</td>
+            <td>{{eq.nombre_departement}}</td>
+            <td>{{eq.email}}</td>
+            <td>{{eq.numero}}</td>
+            
+            
+           
+            <td><button type="button" class="btn btn-danger" (click)="deleteuniversite(eq.idUniv)">Supprimer
+        </button>        
+    <button routerLink="updateuniversite/{{eq.idUniv}}" type="button" class="btn btn-success" [ngStyle]="{'margin-left' :'2rem'}">Modifier
+   </button>
+</td>
+
+        </tr>
+    </tbody>
+
+   
+    
+
+</table>

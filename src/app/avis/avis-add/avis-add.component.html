@@ -1,0 +1,31 @@
+<div class="container-fluid py-3">
+  <div class="row justify-content-center my-3">
+    <div class="col-4">
+      
+      <form [formGroup]="addForm" (ngSubmit)="OnSubmit()">
+        <div class="form-group" [ngStyle]="{'margin-top':'1rem'}">
+          <label for="evaluation">Note</label>
+          <input type="text" id="evaluation" class="form-control" formControlName="evaluation">
+          <span class="help-block" *ngIf="addForm.get('evaluation').hasError('required') && addForm.get('evaluation').touched">
+            Entrez une note !
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="commentaire">Commentaire</label>
+          <input type="text" id="commentaire" class="form-control" formControlName="commentaire">
+          <span class="help-block" *ngIf="addForm.get('commentaire').hasError('required') && addForm.get('commentaire').touched">
+            Entrez un commentaire !
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="date_soumission_avis">Date de soumission d'avis</label>
+          <input type="date" id="date_soumission_avis" class="form-control" formControlName="date_soumission_avis">
+          <span class="help-block" *ngIf="addForm.get('date_soumission_avis').hasError('required') && addForm.get('date_soumission_avis').touched">
+            Entrez une date !
+          </span>
+        </div>
+        <button class="btn btn-primary" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</div>

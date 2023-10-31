@@ -1,0 +1,31 @@
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-table th, .order-table td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .order-table th {
+    background-color: #736464;
+  }
+  
+  
+  
+  .modify-button, .delete-button {
+    padding: 6px 10px;
+    border: none;
+    background-color: #007bff;
+    color: #9e0e0e;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+  
+  .modify-button:hover, .delete-button:hover {
+    background-color: #0056b3;
+  }

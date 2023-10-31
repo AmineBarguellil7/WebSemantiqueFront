@@ -1,0 +1,12 @@
+#B1 {
+    margin-right: 10px;
+}
+input.ng-invalid {
+    border:1px solid red;
+}
+input.ng-valid {
+border: 1px solid green;
+}
+.DataError:hover{
+font-size: large;
+}

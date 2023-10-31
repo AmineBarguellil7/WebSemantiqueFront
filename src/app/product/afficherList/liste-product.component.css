@@ -1,0 +1,149 @@
+/* Center the content in table cells */
+td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px; /* Add padding for better spacing */
+    color : black;
+  }
+  
+  /* Style the table */
+  table {
+    margin: 20px auto; /* Center the table on the page */
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px; /* Set a maximum width for better readability */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for a card-like effect */
+    border: 1px solid #e0e0e0; /* Add a border for separation */
+    background-color: #fff; /* Set a white background */
+  }
+  
+  /* Style table header cells */
+  th {
+    background-color: #f0f0f0; /* Add a light gray background to header cells */
+    font-weight: bold;
+    padding: 10px;
+  }
+  
+  /* Style the search form */
+  .form-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Style the search input */
+  .form-inline input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  /* Style the search button */
+  .form-inline button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Style the update button */
+  #B3 {
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: #28a745; /* Green color for success */
+  }
+  
+  /* Add spacing to the SVG icon */
+  svg {
+    margin-right: 10px;
+  }
+  
+  /* Style the table rows */
+  tr {
+    background-color: #f9f9f9; /* Alternate row background color for better readability */
+  }
+  
+  /* Hover effect for table rows */
+  tr:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Style the modal dialog */
+  .modal {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style the modal header */
+  .modal-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px;
+  }
+  
+  /* Style the modal body */
+  .modal-body {
+    padding: 20px;
+  }
+  
+  /* Style the modal title */
+  .modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Style the modal close button */
+  .modal-header .close {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: -5px;
+  }
+  
+  /* Style the modal content */
+  .modal-content {
+    border: none;
+  }
+  
+  /* Style the form within the modal */
+  .modal-body form {
+    margin: 0;
+  }
+  
+  /* Style the form labels within the modal */
+  .modal-body label {
+    font-weight: bold;
+  }
+  
+  /* Style the form inputs within the modal */
+  .modal-body input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style the form buttons within the modal */
+  .modal-body button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Style the form buttons within the modal */
+  .modal-body button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

@@ -1,0 +1,58 @@
+<div class="container-fluid py-3">
+  <div class="row justify-content-center my-5">
+    <div class="col-5">
+<form (ngSubmit)="updateContrat()"  #updateForm="ngForm"> 
+    <div class="form-group">
+      <label for="dateDebutContrat" > Date debut de contrat</label>
+      <input  type="date"  required   name="dateDebutContrat" [(ngModel)]="contrat.dateDebutContrat" class="form-control"  #dateDebutContrat="ngModel"  >
+      </div>
+         <div class="alert alert-danger"   role="alert" *ngIf="dateDebutContrat.invalid ">
+
+  Date Obligatoire !</div>
+
+
+      <div class="form-group">
+        <label for="dateFinContrat" > Date fin de contrat</label>
+        <input  type="date"  required   name="dateFinContrat" [(ngModel)]="contrat.dateFinContrat" class="form-control"  #dateFinContrat="ngModel"  >
+        </div>
+           <div class="alert alert-danger"   role="alert"*ngIf="dateFinContrat.invalid ">
+
+    Date Obligatoire !</div>
+  
+
+      <div class="form-group" [ngStyle]="{'margin-top':'1rem'}" >
+
+        <h6   class ="form-check-label " for="archive" >Archive </h6>
+        
+        <input type="radio"  name="archive" [(ngModel)]="contrat.archive" #archive="ngModel" value="False" required >False<input type="radio" name="archive" [(ngModel)]="contrat.archive" #archive="ngModel" value="True" required>True
+        </div>
+        <div  class="alert alert-danger" *ngIf="archive.invalid ">
+            <div *ngIf="archive.errors?.['required']" >
+                Select an option !
+</div>
+             
+</div> 
+
+<div class="form-group">
+  <label for="specialite"> Specialite : </label>
+    <select   id="specialite" class="form-select" name="specialite" [(ngModel)]="contrat.specialite" required   #specialite="ngModel">
+      <option  disabled>Choisir une specialite</option>
+      <option *ngFor ="let n of listspecialite">{{n}}</option>
+    </select>
+  </div>
+   
+    <div *ngIf="specialite.invalid  " class="alert alert-danger" role="alert">
+                 
+      Specialite est obligatoire !
+   
+  
+</div>
+
+<button type="submit" class="btn btn-info" >VALIDER</button>
+
+</form> 
+
+<router-outlet></router-outlet>
+
+
+

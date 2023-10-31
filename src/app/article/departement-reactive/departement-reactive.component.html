@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center align-items-center container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <form [formGroup]="signupform" (ngSubmit)="OnSubmit()">
+          <div class="form-group">
+            <label for="nomDepartement">Nom Departement:</label>
+            <input
+              type="text"
+              id="nomDepartement"
+              class="form-control" formControlName="nomDepart">
+              <span class="help-block" *ngIf="!signupform.get('nomDepart').valid && signupform.get('nomDepart').touched">entrer un nom de département valide!</span>
+          </div>
+          <div class="form-group">
+            <label for="surface">surface</label>
+            <input
+              type="text"
+              id="surface"
+              class="form-control" formControlName="surface">
+              <span class="help-block" *ngIf="!signupform.get('surface').valid && signupform.get('surface').touched">entrer une surface valide!</span>
+          </div>
+          <div class="form-group">
+            <label for="emplacement">emplacement</label>
+            <input
+              type="text"
+              id="emplacement"
+              class="form-control" formControlName="emplacement">
+              <span class="help-block" *ngIf="!signupform.get('emplacement').valid && signupform.get('emplacement').touched">entrer un emplacement valide!</span>
+          </div>
+          <div class="form-group">
+            <label for="prix">prix</label>
+            <input
+              type="text"
+              id="prix"
+              class="form-control" formControlName="prix">
+              <span class="help-block" *ngIf="!signupform.get('prix').valid && signupform.get('prix').touched">entrer un prix valide!</span>
+          </div>
+          <button class="btn btn-primary" type="submit">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  

@@ -1,0 +1,13 @@
+
+<div class="list-group"  [ngStyle]="{'margin-top':'1rem'}">
+    <a class="list-group-item list-group-item-action  active">
+      
+        <h6>L'ID d'equipe : {{equipe.idEquipe}}</h6>
+        <h6 >Le nomd d'equipe : {{equipe.nomEquipe}}</h6>
+        <h6>Le niveau d'equipe : {{equipe.niveau}}</h6>
+      <h6>La salle d'equipe : {{equipe.salle}}</h6>
+      <h6>La date de creation : {{equipe.dateCreation}}</h6>
+      
+    </a>
+    <button class="btn btn-primary" (click)="OnequipeDeleted(equipe)">Delete</button>
+  </div>

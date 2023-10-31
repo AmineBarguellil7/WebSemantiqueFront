@@ -1,0 +1,65 @@
+<!--<app-alert *ngIf="showAlert" [color]="alertColor">
+    {{ alertMsg }}
+  </app-alert>
+  
+   Registration Form 
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+     Name 
+    <div class="mb-3">
+      <br>
+        <label class="inline-block mb-2 progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">Nom de l'universite </label>
+        <app-input [control]="name" placeholder="Enter Name">Nom de l'universite</app-input>
+     nombre de departement 
+  <div class="mb-3">
+    <label class="inline-block mb-2 progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">Nombre de Departement</label>
+    <app-input [control]="nombre" type="number">
+      placeholder="Enter nombre de departement"></app-input>
+  </div>
+    Email 
+  <div class="mb-3">
+    <label class="inline-block mb-2 progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">Email</label>
+    <app-input [control]="email" type="email"
+      placeholder="Enter Email"></app-input>
+  </div>
+   Phone Number 
+  <div class="mb-3">
+    <label class="inline-block mb-2 progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">Contact</label>
+    <app-input [control]="phoneNumber" format="(+000)00000000"
+      placeholder="Enter Phone Number"></app-input>
+  </div>-->
+      
+       
+  <div class="container">
+    <form action="" #f="ngForm" (ngSubmit)="submit(f)">
+      <div class="form-group">
+        <label for="" class="inline-block mb-2 progress-bar progress-bar-striped progress-bar-animated" >Nom Universite</label>
+        <input class="" type="text" name="nom" class="form-control" ngModel required pattern="" #l="ngModel" [(ngModel)]="universite.nomUniv">  
+      </div>
+      <div class="alert alert-danger" *ngIf="l.invalid && l.touched">nom invalide</div>
+      <div class="form-group">
+        <label for="" class="inline-block mb-2 progress-bar progress-bar-striped progress-bar-animated">Nombre de departement</label>
+        <input class="" type="number" name="nombre_departement" class="form-control" ngModel required #e="ngModel" [(ngModel)]="universite.nombre_departement">  
+      </div>
+      <div class="alert alert-danger" *ngIf="e.invalid && e.touched">nombre de departement invalide</div>
+      <div class="form-group">
+        <label for="" class="inline-block mb-2 progress-bar progress-bar-striped progress-bar-animated">Email</label>
+        <input type="" name="email" class="form-control" ngModel required #r="ngModel" [(ngModel)]="universite.email" 
+        placeholder="Ex. pat@example.com">
+      </div>
+      <div class="alert alert-danger" *ngIf="r.invalid && r.touched">email invalide</div>
+      <div class="form-group">
+        <label for="" class="inline-block mb-2 progress-bar progress-bar-striped progress-bar-animated">Numero</label>
+        <input type="text" name="numero" class="form-control" ngModel required #p="ngModel" [(ngModel)]="universite.numero">
+  
+      </div>
+      <div class="alert alert-danger" *ngIf="p.invalid && p.touched">numero invalide</div>
+    </form></div>
+ 
+    
+  
+  <button type="submit"  class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
+        hover:bg-indigo-500 disabled:opacity-50 disabled:bg-indigo-400btn btn btn-lg btn-primary " [disabled]="f.invalid" (click)="submit(f)" >
+      submit
+    </button>
+    
+   

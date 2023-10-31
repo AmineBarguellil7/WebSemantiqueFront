@@ -1,0 +1,12 @@
+<div class="list-group"  [ngStyle]="{'margin-top':'1rem'}">
+    <a class="list-group-item list-group-item-action  active">
+      
+      <h6>L'Id de l'universite: {{universite.idUniv}}</h6>
+        <h6 >nom de l'universite: {{universite.nomUniv}}</h6>
+        <h6>nombre de Departement : {{universite.nombre_departement}}</h6>
+      <h6>Email de l'universite: {{universite.email}}</h6>
+      <h6> numero de l'universite : {{universite.numero}}</h6>
+      
+    </a>
+    <button class="btn btn-primary" (click)= "OneuniversiteDeleted(universite)" >Delete</button>
+</div>

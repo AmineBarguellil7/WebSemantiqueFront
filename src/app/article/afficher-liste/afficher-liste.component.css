@@ -1,0 +1,34 @@
+
+table {
+    margin-top:20px;
+}
+#B3 {
+    margin-top: 20px;
+    margin-left: 150px;
+}
+
+#SearchTitle {
+    margin-right: 10px;
+}
+
+.dropdown {
+    margin:50px;
+}
+
+#categorie {
+    position: relative;
+    top:20px;
+    right: 30px;
+}
+
+.datePublication {
+    position: relative;
+    left:350px;
+}
+
+
+#datePublication {
+    position: relative;
+    left:600px;
+    bottom: 30px;
+}

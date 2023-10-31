@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center align-items-center container mt-5">
+  <form #f="ngForm" (ngSubmit)="f.form.valid && update()">
+    <div ngModelGroup="storeInfo" #sg="ngModelGroup">
+      <div class="form-group">
+        <label>
+          Note:
+          <input type="text" name="evaluation"
+            #name="ngModel"  [(ngModel)]="avis.evaluation" required 
+            class="form-control"  id="evaluation" placeholder="Enter Note !"/>
+        </label>
+      </div>
+
+   
+      
+      
+
+      <div class="form-group">
+        <label>
+          Commentaire:
+          <input type="text" name="commentaire"
+            #description="ngModel"  [(ngModel)]="avis.commentaire "
+            class="form-control"  id="commentaire" placeholder="Enter Commentaire"/>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Date:
+          <input type="date" name="date_soumission_avis"
+            #location="ngModel"  [(ngModel)]="avis.date_soumission_avis"
+            class="form-control"  id="date_soumission_avis" placeholder="Enter date"/>
+        </label>
+      </div>
+
+     
+
+      
+    </div>
+
+    <button type="submit" class="btn-primary btn-sm">Submit</button>
+  </form>
+</div>
+<router-outlet></router-outlet>
