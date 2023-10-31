@@ -17,6 +17,8 @@ export class EventListComponent implements OnInit {
   name:string="";
   filterType: string = '';
   SearchData:any;
+  selectedDateFilter: string = 'all';
+  filteredEvents: any;
   
   constructor(private http: HttpClient , private router: Router) { }
 
@@ -24,6 +26,25 @@ export class EventListComponent implements OnInit {
     this.http.get('http://localhost:9093/event/query').subscribe((responseData) => {
       this.events = responseData;
       console.log(this.events);
+    });
+  }
+
+  filterData() {
+    const backendUrl = 'http://localhost:9093/events/eventByStartDate'; 
+    const params = new HttpParams().set('filter', this.selectedDateFilter);
+
+    this.filterType = 'date de dèbut';
+  
+    this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
+      this.filteredEvents = responseData;
+      console.log(this.filteredEvents);
+  
+      this.router.navigate(['/events/search'], {
+        queryParams: {
+          searchData: JSON.stringify(this.filteredEvents),
+        filterType: this.filterType
+        }
+      });
     });
   }
 
