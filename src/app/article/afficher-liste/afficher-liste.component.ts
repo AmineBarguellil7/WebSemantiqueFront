@@ -20,6 +20,34 @@ export class AfficherListeComponent implements OnInit {
   categories: any[] = [];
 
 
+  filteredArticles: any;
+  selectedDateFilter: string = 'all';
+
+  filterType: string = '';
+
+
+  filterData() {
+    const backendUrl = 'http://localhost:9093/article/articlesByDatePublication'; 
+    const params = new HttpParams().set('filter', this.selectedDateFilter);
+
+    this.filterType = 'datePublication';
+  
+    this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
+      this.filteredArticles = responseData;
+      console.log(this.filteredArticles);
+  
+      this.router.navigate(['/afficher-liste/search'], {
+        queryParams: {
+          searchData: JSON.stringify(this.filteredArticles),
+        filterType: this.filterType
+        }
+      });
+    });
+  }
+  
+
+
+
 
   TestStatus() {
     if (this.titre === "") {
@@ -28,13 +56,15 @@ export class AfficherListeComponent implements OnInit {
   
     const backendUrl = 'http://localhost:9093/article/articlesByTitre';
     const params = new HttpParams().set('titre', this.titre);
+    this.filterType = 'titre';
   
     this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
       this.SearchData = responseData;
       
       this.router.navigate(['/afficher-liste/search'], {
         queryParams: {
-          searchData: JSON.stringify(this.SearchData) 
+          searchData: JSON.stringify(this.SearchData),
+          filterType: this.filterType
         }
       });
     });
@@ -53,6 +83,7 @@ export class AfficherListeComponent implements OnInit {
   
     const backendUrl = 'http://localhost:9093/article/articlesByCategory'; 
     const params = new HttpParams().set('category', selectedCategory);
+    this.filterType = 'categorie';
   
     this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
       this.SearchData = responseData;
@@ -60,7 +91,8 @@ export class AfficherListeComponent implements OnInit {
   
       this.router.navigate(['/afficher-liste/search'], {
         queryParams: {
-          searchData: JSON.stringify(this.SearchData)
+          searchData: JSON.stringify(this.SearchData),
+          filterType: this.filterType
         }
       });
     });
@@ -68,19 +100,6 @@ export class AfficherListeComponent implements OnInit {
     return false;
   }
   
-  
-
-
-  SearchArticleById(id:string) {
-    if (this.Id=="") {
-      return true;
-    }
-    if (id==this.Id) {
-      return true;
-    }
-    return false;
-  }
-
   loadCategories() {
     this.http.get('http://localhost:9093/categorieArticle/query').subscribe((data: any) => {
       this.categories = data;
