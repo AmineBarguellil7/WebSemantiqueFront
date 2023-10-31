@@ -116,7 +116,9 @@ getBoutiquePromotions(): Observable<any[]> {
     })
   );;
 }
-
+getLatestPromotion() : Observable<any[]>{
+  return this.http.get<any[]>(`http://localhost:9093/store/latestPromotion`);
+}
 
 addArticle(article:Article):Observable<Object> {
 return this.http.post<Object>(this.AjoutarticleUrl,article);
