@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap } from 'rxjs';
 import { Article } from '../models/Article';
 import { Equipe } from '../models/equipe'; 
 import { Universite } from '../models/Universite';
@@ -38,6 +38,24 @@ getEquipeById(idT: any){
   return this.http.get('http://localhost:8082/equipe/'+idT) ;
 }
 
+getBoutiqueData(): Observable<any[]> {
+  return this.http.get<any[]>('http://localhost:9093/store/boutiqueQuery');
+}
+
+getBoutiqueByName(nameStore: string): Observable<any[]> {
+  return this.http.get<any[]>(`http://localhost:9093/store/boutiqueByName?boutiqueName=${nameStore}`);
+}
+
+getBoutiquePromotions(): Observable<any[]> {
+  return this.http.get<any[]>(`http://localhost:9093/store/promotions`)
+  .pipe(
+    tap(data => console.log('Data from service:', data)),
+    catchError(error => {
+      console.error('Error in service:', error);
+      return [];
+    })
+  );;
+}
 
 addStore(store?: Store): Observable<Object>{
   return this.http.post<Object>('http://localhost:8084/store',store) ;
