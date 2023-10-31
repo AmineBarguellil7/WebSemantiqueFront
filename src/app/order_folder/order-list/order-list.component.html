@@ -1,30 +1,93 @@
-<div>
-  <h2>Order Search</h2>
+<div class="container">
+  
 
-  <label for="idSearch">Search by ID:</label>
-  <input type="number" id="idSearch" [(ngModel)]="searchId" placeholder="Enter ID">
-  <button (click)="getOrderById(searchId)">Search</button>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="idSearch">Search by ID:</label>
+        <input type="number" class="form-control" id="idSearch" [(ngModel)]="searchId" placeholder="Enter ID">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="cssbuttons-io-button" (click)="getOrderById(searchId)">Search<div class="icon">
+        <svg
+          height="24"
+          width="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div></button>
+    </div>
+  </div>
 
-  <label for="codePromoSearch">Search by Code Promo:</label>
-  <select id="codePromoSearch" [(ngModel)]="searchCodePromo">
-    <option value="">Select a Code Promo</option>
-    <option *ngFor="let coupon of initialCoupons" [value]="coupon">{{ coupon }}</option>
-  </select>
-  <button (click)="getOrderByCodePromo(searchCodePromo)">Search</button>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="codePromoSearch">Search by Code Promo:</label>
+        <select class="form-control" id="codePromoSearch" [(ngModel)]="searchCodePromo">
+          <option value="">Select a Code Promo</option>
+          <option *ngFor="let coupon of initialCoupons" [value]="coupon">{{ coupon }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="cssbuttons-io-button" (click)="getOrderByCodePromo(searchCodePromo)">Search <div class="icon">
+        <svg
+          height="24"
+          width="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div></button>
+    </div>
+  </div>
 
-  <label for="deliveryAddressSearch">Search by Delivery Address:</label>
-  <input type="text" id="deliveryAddressSearch" [(ngModel)]="searchDeliveryAddress" placeholder="Enter Delivery Address">
-  <button (click)="getOrderByDeliveryAddress(searchDeliveryAddress)">Search</button>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="deliveryAddressSearch">Search by Delivery Address:</label>
+        <input type="text" class="form-control" id="deliveryAddressSearch" [(ngModel)]="searchDeliveryAddress" placeholder="Enter Delivery Address">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="cssbuttons-io-button" (click)="getOrderByDeliveryAddress(searchDeliveryAddress)">Search<div class="icon">
+        <svg
+          height="24"
+          width="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div></button>
+    </div>
+  </div>
 
   <h3>Search Results</h3>
-  <table class="order-table">
+  <table class="table">
     <thead>
       <tr>
         <th>Order ID</th>
         <th>Order Date</th>
         <th>Address</th>
-        <th>Order promocode</th>
-        <th>Order quantity</th>
+        <th>Order Promo Code</th>
+        <th>Order Quantity</th>
       </tr>
     </thead>
     <tbody>
