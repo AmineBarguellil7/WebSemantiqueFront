@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap } from 'rxjs';
 import { Article } from '../models/Article';
 import { Equipe } from '../models/equipe'; 
 import { Universite } from '../models/Universite';
 import { Contrat } from '../models/contrat';
 import { Etudiant } from '../models/Etudiant';
-import {Product } from '../models/Product';import { Store } from '../models/store';
-import { Order } from '../models/order';
+import { Store } from '../models/store';
 import { Avis } from '../models/Avis';
+import { Order } from '../models/order';
+import { Product } from '../models/Product';
 
 
 @Injectable({
@@ -40,6 +41,9 @@ export class DataService {
   
   public ahmedUrl = 'http://localhost:8082/equipe';
   constructor(private http:HttpClient) { }
+
+
+
 
 
 
@@ -97,7 +101,24 @@ getStoreById(idT: any){
   return this.http.get('http://localhost:8025/store/'+idT) ;
 }
 
+getBoutiqueData(): Observable<any[]> {
+  return this.http.get<any[]>('http://localhost:9093/store/boutiqueQuery');
+}
 
+getBoutiqueByName(nameStore: string): Observable<any[]> {
+  return this.http.get<any[]>(`http://localhost:9093/store/boutiqueByName?boutiqueName=${nameStore}`);
+}
+
+getBoutiquePromotions(): Observable<any[]> {
+  return this.http.get<any[]>(`http://localhost:9093/store/promotions`)
+  .pipe(
+    tap(data => console.log('Data from service:', data)),
+    catchError(error => {
+      console.error('Error in service:', error);
+      return [];
+    })
+  );;
+}
 
 
 addArticle(article:Article):Observable<Object> {
@@ -232,5 +253,4 @@ addContrat(contrat?:Contrat): Observable<Object> {
     getAvisById(idAvis:any) {
       return this.http.get(this.getavisByIdUrl+idAvis);
     }
-    
 }

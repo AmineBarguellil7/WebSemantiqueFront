@@ -1,24 +1,103 @@
-<table class="order-table">
-  <thead>
-    <tr>
-      <th>Order Date</th>
-      <th>Address</th>
-      <th>Modify</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let order of orders">
-      <td>{{ order.orderDate }}</td>
-      <td>{{ order.address }}</td>
-      <td>
-        <a [routerLink]="['/modifyorder', order.id]">
-          <button class="modify-button" routerLink="/modifyorder/{{ order.id }}">Modify</button>
-        </a>
-      </td>
-      <td>
-        <button class="delete-button" (click)="deleteOrder(order)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="idSearch">Search by ID:</label>
+        <input type="number" class="form-control" id="idSearch" [(ngModel)]="searchId" placeholder="Enter ID">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="cssbuttons-io-button" (click)="getOrderById(searchId)">Search<div class="icon">
+        <svg
+          height="24"
+          width="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div></button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="codePromoSearch">Search by Code Promo:</label>
+        <select class="form-control" id="codePromoSearch" [(ngModel)]="searchCodePromo">
+          <option value="">Select a Code Promo</option>
+          <option *ngFor="let coupon of initialCoupons" [value]="coupon">{{ coupon }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="cssbuttons-io-button" (click)="getOrderByCodePromo(searchCodePromo)">Search <div class="icon">
+        <svg
+          height="24"
+          width="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div></button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="deliveryAddressSearch">Search by Delivery Address:</label>
+        <input type="text" class="form-control" id="deliveryAddressSearch" [(ngModel)]="searchDeliveryAddress" placeholder="Enter Delivery Address">
+      </div>
+    </div>
+    <div class="col-md-2">
+      <button class="cssbuttons-io-button" (click)="getOrderByDeliveryAddress(searchDeliveryAddress)">Search<div class="icon">
+        <svg
+          height="24"
+          width="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M0 0h24v24H0z" fill="none"></path>
+          <path
+            d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div></button>
+    </div>
+  </div>
+
+  <h3>Search Results</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Address</th>
+        <th>Order Promo Code</th>
+        <th>Order Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of data">
+        <td>{{ order.idCommande }}</td>
+        <td>{{ order.orderDate }}</td>
+        <td>{{ order.deliveryAddress }}</td>
+        <td>{{ order.codePromo }}</td>
+        <td>{{ order.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

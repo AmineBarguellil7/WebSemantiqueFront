@@ -12,7 +12,7 @@ export class ListStoreComponent implements OnInit {
   magasins: any; // Update variable names and types
   magasin = new Store(); // Update variable names and types
   details: any;
-  name: any; // Update variable names
+  nameStore: any; // Update variable names
   p: number = 1;
 
   constructor(private Route: ActivatedRoute, private dataService: DataService, private router: Router) { }
@@ -20,28 +20,46 @@ export class ListStoreComponent implements OnInit {
   ngOnInit(): void {
     this.getMagasins();
   }
+  parseRDFValue(value: string): any {
+    const separatorIndex = value.indexOf('^^');
+    if (separatorIndex !== -1) {
+      return value.substring(0, separatorIndex);
+    }
+    return value; // Return the original value if no datatype info is found
+  }
   getMagasins() {
-    this.dataService.getStores().subscribe((res) => {
-      this.magasins = res;
+    this.dataService.getBoutiqueData()
+    .subscribe((data: any[]) => {
+      this.magasins = data.map(boutique => ({
+        idStore: this.parseRDFValue(boutique.idStore),
+        nameStore: boutique.nameStore,
+        description: boutique.description,
+        phoneNumber: this.parseRDFValue(boutique.phoneNumber)
+      }));;
     });
   }
-  deleteMagasin(id: any) {
-    this.dataService.deleteStore(id).subscribe((res) => {
-      this.getMagasins();
-    });
+  getBoutiquesByName(nameStore: string): void {
+    this.dataService.getBoutiqueByName(nameStore)
+      .subscribe((data: any[]) => {
+        this.magasins = data.map(boutique => ({
+          idStore: this.parseRDFValue(boutique.idStore),
+          nameStore: boutique.nameStore,
+          description: boutique.description,
+          phoneNumber: this.parseRDFValue(boutique.phoneNumber)
+        }));;
+      });
   }
-
   search() {
-    if (this.name == "") {
+    if (this.nameStore == "") {
       this.ngOnInit();
     } else {
       this.magasins = this.magasins.filter((res) => {
-        return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+        return res.nameStore.toLocaleLowerCase().match(this.nameStore.toLocaleLowerCase());
       });
     }
   }
 
-  key: String = 'idMagasin'; // Update sorting key
+  key: String = 'idStore'; // Update sorting key
   reverse: boolean = false;
 
   sort(key) {

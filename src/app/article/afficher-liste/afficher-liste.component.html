@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <br>
 <form class="form-inline my-2 my-lg-0">
-  <button class="btn btn-info" id="SearchTitle" (click)="TestStatus()">Search By Title</button>
-  <input class="form-control mr-sm-2" type="text" placeholder="Rechercher Par titre" aria-label="Search" [(ngModel)]="titre" name="SearchInputTitre">
+  <button class="btn btn-info custom-button" id="SearchTitle" (click)="TestStatus()">Search By Title</button>
+  <input class="form-control mr-sm-2 custom-input" type="text" placeholder="Rechercher Par titre" aria-label="Search" [(ngModel)]="titre" name="SearchInputTitre">
+
 
   
   <div class="dropdown">
@@ -19,7 +20,7 @@
   <button class="btn btn-primary" id="categorie" (click)="searchByCategory()">Rechercher par catégorie</button>
   
   
-  <form name="myForm">
+  <form name="myForm" class="myForm">
     <div class="datePublication">
       <label for="datePublicationDropdown">Rechercher par datePublication:</label>
       <br>
