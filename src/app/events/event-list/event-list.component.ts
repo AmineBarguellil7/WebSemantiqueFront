@@ -14,7 +14,10 @@ import { Router } from '@angular/router';
 export class EventListComponent implements OnInit {
 
   events: any;
-
+  name:string="";
+  filterType: string = '';
+  SearchData:any;
+  
   constructor(private http: HttpClient , private router: Router) { }
 
   ngOnInit(): void {
@@ -24,5 +27,26 @@ export class EventListComponent implements OnInit {
     });
   }
 
-
+  searchByName() {
+    if (this.name === "") {
+      return false;
+    }
+  
+    const backendUrl = 'http://localhost:9093/event/eventByName';
+    const params = new HttpParams().set('name_event', this.name);
+    this.filterType = 'nom';
+  
+    this.http.get(backendUrl, { params: params }).subscribe((responseData) => {
+      this.SearchData = responseData;
+      
+      this.router.navigate(['/events/search'], {
+        queryParams: {
+          searchData: JSON.stringify(this.SearchData),
+          filterType: this.filterType
+        }
+      });
+    });
+  
+    return false;
+  }
 }
