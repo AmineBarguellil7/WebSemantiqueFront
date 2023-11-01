@@ -1,261 +1,159 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-<br />
-<!-- <form class="form-inline my-2 my-lg-0">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    fill="currentColor"
-    class="bi bi-search"
-    viewBox="0 0 16 16"
-  >
-    <path
-      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-    />
-  </svg>
-  <input
-    class="form-control mr-sm-2"
-    type="search"
-    placeholder="Search by ID"
-    aria-label="Search"
-    
-    name="SearchInput"
-  />
-</form>
-<br />
-<form class="form-inline my-2 my-lg-0">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    fill="currentColor"
-    class="bi bi-search"
-    viewBox="0 0 16 16"
-  >
-    <path
-      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-    />
-  </svg>
-   <input
-    class="form-control mr-sm-2"
-    type="text"
-    placeholder="Search by Title"
-    aria-label="Search"
-    [(ngModel)]="name"
-    name="SearchInputTitle"
-  /> 
-</form> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Page Title</title>
+    <!-- Add the path to your custom CSS file here -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <style>
+      /* Basic styling for your page */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
 
-<div class="d-flex justify-content-center align-items-center container">
-  <div class="row">
-    <div>
-      <table class="table table-striped table-dark">
-        <thead>
-          <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Description</td>
-            <td>Price</td>
-            <td>Quantity</td>
-            <td>Weight</td>
-            <td>Image URL</td>
-            <td>Modify</td>
-            <td>Delete</td>
-          </tr>
-        </thead>
-        <tbody *ngFor="let product of products">
-          <tr >
-            <td>{{ product.id }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.quantity }}</td>
-            <td>{{ product.weight }}</td>
-            <td>{{ product.image_url }}</td>
-            <td>
-              <button
-                class="btn btn-secondary"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                (click)="onUpdateProduct(product)"
-              >
-                Modify
-              </button>
-            </td>
-            <td>
-              <button
-                class="btn btn-danger"
-                (click)="deleteProduct(product.id)"
-              >
-                Delete
-              </button>
-            </td>
-            <td>
-            
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
 
-  <!-- Modal
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modify Product</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
+      .container {
+        margin-top: 20px;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      select,
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      table th,
+      table td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      table th {
+        background-color: #333;
+        color: #fff;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      table td {
+        border-top: 1px solid #ddd;
+      }
+
+      table tr:hover {
+        background-color: #e0e0e0;
+      }
+
+      /* Style for buttons */
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Product List</h1>
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Rechercher Par nom"
+            aria-label="Search"
+            [(ngModel)]="name"
+            name="SearchInputName"
+          />
+          <button class="btn btn-info" (click)="filterByName()">
+            Search By Name
           </button>
         </div>
-        <div class="modal-body">
-          <form #updateForm="ngForm" (ngSubmit)="modifyProduct()">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input
-                type="text"
-                class="form-control"
-                #productName="ngModel"
-                name="name"
-                [(ngModel)]="productToModify.name"
-                required
-                minlength="3"
-                pattern="[a-zA-Z]*"
-                placeholder="Enter a product name"
-              />
-              <span
-                class="help-block"
-                *ngIf="!productName.valid && productName.touched"
-                style="color: red"
-                >Enter a valid product name!</span
-              >
-              <br />
-              <label for="description">Description:</label>
-              <input
-                type="text"
-                class="form-control"
-                name="description"
-                [(ngModel)]="productToModify.description"
-                required
-                pattern="[a-zA-Z]*"
-                placeholder="Enter a product description"
-                #productDescription="ngModel"
-              />
-              <span
-                class="help-block"
-                *ngIf="!productDescription.valid && productDescription.touched"
-                style="color: red"
-                >Enter a valid product description!</span
-              >
-              <br />
-              <label for="price">Price:</label>
-              <input
-                type="number"
-                class="form-control"
-                name="price"
-                [(ngModel)]="productToModify.price"
-                required
-                placeholder="Enter a product price"
-                #productPrice="ngModel"
-              />
-              <span
-                class="help-block"
-                *ngIf="!productPrice.valid && productPrice.touched"
-                style="color: red"
-                >Enter a valid product price!</span
-              >
-              <br />
-              <label for="quantity">Quantity:</label>
-              <input
-                type="number"
-                class="form-control"
-                name="quantity"
-                [(ngModel)]="productToModify.quantity"
-                required
-                placeholder="Enter product quantity"
-                #productQuantity="ngModel"
-              />
-              <span
-                class="help-block"
-                *ngIf="!productQuantity.valid && productQuantity.touched"
-                style="color: red"
-                >Enter a valid product quantity!</span
-              >
-              <br />
-              <label for="weight">Weight:</label>
-              <input
-                type="number"
-                class="form-control"
-                name="weight"
-                [(ngModel)]="productToModify.weight"
-                required
-                placeholder="Enter product weight"
-                #productWeight="ngModel"
-              />
-              <span
-                class="help-block"
-                *ngIf="!productWeight.valid && productWeight.touched"
-                style="color: red"
-                >Enter a valid product weight!</span
-              >
-              <br />
-              <label for="image_url">Image URL:</label>
-              <input
-                type="text"
-                class="form-control"
-                name="image_url"
-                [(ngModel)]="productToModify.image_url"
-                required
-                placeholder="Enter product image URL"
-                #productImageUrl="ngModel"
-              />
-              <span
-                class="help-block"
-                *ngIf="!productImageUrl.valid && productImageUrl.touched"
-                style="color: red"
-                >Enter a valid image URL!</span
-              >
-              <br />
-              <label for="store_id">Store ID:</label>
-              <input
-                type="number"
-                class="form-control"
-                name="store_id"
-                [(ngModel)]="productToModify.store_id"
-                required
-                placeholder="Enter store ID"
-              />
-              <span
-                class="help-block"
-                *ngIf="!productStoreId.valid && productStoreId.touched"
-                style="color: red"
-                >Enter a valid store ID!</span
-              >
-              <button
-                [disabled]="!updateForm.valid"
-                type="submit"
-                class="btn btn-dark"
-                id="B3"
-              >
-                Update
-              </button>
-            </div>
-          </form> 
-        </div>
+      </form>
+      <div class="form-group">
+        <label for="priceFilter">Filter by Price:</label>
+        <input
+          type="number"
+          id="priceFilter"
+          [(ngModel)]="minPrice"
+          name="SearchInputPrice"
+        />
       </div>
+      <button class="btn btn-info" (click)="filterByPrice()">
+        Search By Price
+      </button>
+      <br/>
+      <br/>
+
+      <div class="form-group">
+        <label for="categoryDropdown">Filter by Category:</label>
+        <select [(ngModel)]="category" (change)="searchByCategory()">
+          <option value="">Select Category</option>
+          <option *ngFor="let cat of categories" [value]="cat.nameCategorie">
+            {{ cat.nameCategorie }}
+          </option>
+        </select>
+      </div>
+     
     </div>
-  </div>-->
-</div>
+    <button class="btn btn-successs" (click)="reloadProducts()" style="float: left;">
+      Reload Categories
+    </button>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Weight</th>
+      </tr>
+      <tr *ngFor="let product of products">
+        <td>{{ product.idProduct[0] }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.weight }}</td>
+      </tr>
+    </table>
+  </body>
+</html>
