@@ -12,12 +12,14 @@ export class DetailArticleComponent implements OnInit {
 
   
   SearchData:any;
+  filterType: string = '';
 
   constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
       this.SearchData = JSON.parse(params['searchData']); 
+      this.filterType = params['filterType']; 
     });
   }
 }
