@@ -55,10 +55,9 @@ const routes: Routes = [
   { path: 'orderlist', component: OrderListComponent },
   { path: 'modifyorder/:id', component: ModifyOrderComponent },
 
-  {
-    path: '',
-    loadChildren: () => import('./avis/avis.module').then((m) => m.AvisModule),
-  },
+{path:"",loadChildren: () => import('./avis/avis.module').then(m => m.AvisModule)},
+{ path: 'stands', loadChildren: () => import('./stands/stands.module').then(m => m.StandsModule) },
+
 ];
 
 @NgModule({

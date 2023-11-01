@@ -54,7 +54,7 @@ export class EventListComponent implements OnInit {
     }
   
     const backendUrl = 'http://localhost:9093/event/eventByName';
-    const params = new HttpParams().set('name_event', this.name);
+    const params = new HttpParams().set('nameevent', this.name);
     this.filterType = 'nom';
   
     this.http.get(backendUrl, { params: params }).subscribe((responseData) => {

@@ -1,0 +1,32 @@
+<br>
+<div class="row">
+    <div class="col-md-6">
+      <form class="form-inline">
+        <div class="form-group">
+          <input class="form-control mr-2 custom-input" type="text" placeholder="Rechercher par status" [(ngModel)]="status" name="SearchInputStatus">
+        </div>
+        <button class="btn btn-info custom-button" id="SearchStatus" (click)="searchByStatus()">Rechercher par status</button>
+      </form>
+    </div>
+</div>
+<div class="container mt-5">
+    <h2>Liste des stands</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Numèro du stand</th>
+          <th>Emplacement du stand</th>
+          <th>Prix de location</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stand of stands">
+          <td>{{ stand.numero }}</td>
+          <td>{{ stand.emplacement}}</td>
+          <td>{{ stand.tarif_de_location}}</td>
+          <td>{{ stand.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
