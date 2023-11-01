@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../service/data.service';
 import { Order } from '../../models/order';
-
+import { HttpClient,  HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
@@ -9,34 +11,56 @@ import { Order } from '../../models/order';
 })
 export class OrderListComponent implements OnInit {
   orders: Order[] = [];
+  data: any;
+  searchId: number;
+  initialCoupons: string[] = [];
+searchCodePromo: string;
+searchDeliveryAddress: string;
+imports: [FormsModule];
 
-  constructor(private dataService: DataService) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.dataService.getOrders().subscribe(
-      (response) => {
-        this.orders = response;
-      },
-      (error) => {
-        console.error('Error fetching orders', error);
-      }
-    );
+    this.loadOrders();
+    this.loadInitialCoupons();
   }
 
-  deleteOrder(order: Order) {
-    if (confirm('Are you sure you want to delete this order?')) {
-      this.dataService.deleteOrder(order).subscribe(
-        () => {
-          // Remove the order from the local list
-          const index = this.orders.indexOf(order);
-          if (index !== -1) {
-            this.orders.splice(index, 1);
-          }
-        },
-        (error) => {
-          console.error('Error deleting order', error);
-        }
-      );
-    }
+  loadOrders() {
+    this.http.get('http://localhost:9093/commande/queryCommandeParameters').subscribe((responseData) => {
+      this.data = responseData;
+      console.log(this.data);
+    });
   }
+  
+  loadInitialCoupons() {
+    this.http.get('http://localhost:9093/coupon/query').subscribe((coupons: any) => {
+      this.initialCoupons = coupons.map((coupon: any) => coupon.codePromo);
+      console.log(this.initialCoupons);
+    });
+  }
+
+  getOrderById(id: number) {
+    const backendUrl = `http://localhost:9093/commande/getById/${id}`;
+    this.http.get(backendUrl).subscribe((responseData) => {
+      this.data = responseData;
+      console.log(this.data);
+    });
+  }
+
+  getOrderByCodePromo(code: string) {
+    const backendUrl = `http://localhost:9093/commande/getByCodePromo/${code}`;
+    this.http.get(backendUrl).subscribe((responseData) => {
+      this.data = responseData;
+      console.log(this.data);
+    });
+  }
+
+  getOrderByDeliveryAddress(address: string) {
+    const backendUrl = `http://localhost:9093/commande/getByDeliveryAddress/${address}`;
+    this.http.get(backendUrl).subscribe((responseData) => {
+      this.data = responseData;
+      console.log(this.data);
+    });
+  }
+  
 }
